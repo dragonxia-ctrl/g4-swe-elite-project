@@ -1,0 +1,20 @@
+name: g4_swe_elite
+model: gemma-4-31b-it-qat-w4a16-ct
+instruction: !include prompts/system.md
+tools:
+  - run_command
+  - read_file
+  - edit_file
+  - write_file
+  - get_status
+  - submit_patch
+  - get_code_neighbors
+  - search_similar_code
+  - get_code_subgraph
+  - agent_tool:
+      config_path: sub_agents/repo_analyst.yaml
+      skip_summarization: true
+skills:
+  - skills/repo_navigation
+  - skills/repair_protocol
+generate_content_config: !include configs/sampling.yaml
